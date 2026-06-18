@@ -1,0 +1,12 @@
+{
+    "DOCUMENTATION": "https://cms-analysis.docs.cern.ch/guidelines/plotting/colors/#categorical-data-eg-1d-stackplots",
+    "MC_QCDJets": "#ffa90e",
+    "MC_TTBarJets": "#92dadd",
+    "MC_WZJets": "#b9ac70",
+    "MC_HiggsJets": "#bd1f01",
+    "MC_DibosonJets": "#717581",
+    "MC_SingleTopJets": "#3f90da",
+    "SignalMC_XHY4b": "#832db6",
+    "data": "black"
+}
+
