@@ -98,6 +98,40 @@ RVec<bool> goodHighPtMuon(int nMuon, RVec<bool> Muon_id, RVec<bool> goodHighPtMu
     return IsGood;
 }
 
+RVec<bool> goodLowPtElectron(int nElectron, RVec<bool> Electron_id, RVec<float> Electron_pt, float pt_min, float pt_max, RVec<float>  Electron_eta,  RVec<std::pair<float, float>> eta_ranges ){
+    RVec<bool> IsGood = {};
+    for(Int_t i=0; i<nElectron;i++){
+        bool inRange = false;
+        for (const auto& range : eta_ranges) {
+            if (range.first < TMath::Abs(Electron_eta.at(i)) && range.second > TMath::Abs(Electron_eta.at(i)) ) {inRange = true; break;}
+        }
+        if(inRange && Electron_id[i] && Electron_pt[i]>pt_min &&  Electron_pt[i]<pt_max){
+            IsGood.push_back(true);
+        }
+        else{
+            IsGood.push_back(false);
+        }
+    }
+    return IsGood;
+}
+
+RVec<bool> goodHighPtElectron(int nElectron, RVec<bool> Electron_id, RVec<bool> goodHighPtElectronIsoID, RVec<float> Electron_pt, float pt_min,  RVec<float>  Electron_eta,  RVec<std::pair<float, float>> eta_ranges ){
+    RVec<bool> IsGood = {};
+    for(Int_t i=0; i<nElectron;i++){
+        bool inRange = false;
+        for (const auto& range : eta_ranges) {
+            if (range.first < TMath::Abs(Electron_eta.at(i)) && range.second > TMath::Abs(Electron_eta.at(i)) ) {inRange = true; break;}
+        }
+        if(inRange && Electron_id[i] && goodHighPtElectronIsoID[i] && Electron_pt[i]>pt_min){
+            IsGood.push_back(true);
+        }
+        else{
+            IsGood.push_back(false);
+        }
+    }
+    return IsGood;
+}
+
 RVec<int> IdxminRLepJet(int nLep, RVec<float> Lep_eta, RVec<float>  Lep_phi, int nJet, RVec<float> Jet_eta, RVec<float>  Jet_phi, RVec<float> Jet_pt, float jet_pt_min){
     RVec<int> Indices = {};
     for(Int_t i=0; i<nLep;i++){
@@ -122,7 +156,7 @@ float rel_pt(float pt, float eta, float phi,  float eta0, float phi0){
     return pt*sqrt( max(_tmp, 0.0f) );
 }
 
-RVec<bool> goodHighPtMuonIsoID(int nMuon,  RVec<int> IdxminRLepJet, RVec<float> Muon_pt, RVec<float> Muon_eta, RVec<float>  Muon_phi, int nJet, RVec<float> Jet_eta, RVec<float>  Jet_phi , float R_min, float pt_rel_min){
+RVec<bool> goodHighPtLeptonIsoID(int nMuon,  RVec<int> IdxminRLepJet, RVec<float> Muon_pt, RVec<float> Muon_eta, RVec<float>  Muon_phi, int nJet, RVec<float> Jet_eta, RVec<float>  Jet_phi , float R_min, float pt_rel_min){
     RVec<bool> IsGood = {};
     for(Int_t i=0; i<nMuon;i++){
         int j = IdxminRLepJet.at(i);
@@ -158,6 +192,14 @@ RVec<bool> goodElectron( int nElectron, RVec<int> Electron_cutBased, int id_cut,
             IsGood.push_back(false);
     }
     return IsGood;
+}
+
+RVec<float> InvertTagger(int nJet, RVec<float> Tagger){
+    RVec<float> InverseTagger = {};
+    for(Int_t i=0; i<nJet;i++){
+        InverseTagger.push_back(1 / std::max(float(Tagger.at(i)), float(1e-6) ) );
+    }
+    return InverseTagger;
 }
 
 RVec<float> DefineTagger(int nJet, RVec<float> Tagger_QCD, RVec<float> Tagger_target){
