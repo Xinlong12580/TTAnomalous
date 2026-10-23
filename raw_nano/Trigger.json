@@ -59,36 +59,51 @@
     },
     "Muon":{
         "2022":[
-            "HLT_IsoMu24"
+            "HLT_IsoMu24",
+            "HLT_Mu50"
         ],
         "2022EE":[
-            "HLT_IsoMu24"
+            "HLT_IsoMu24",
+            "HLT_Mu50"
         ],
         "2023":[
-            "HLT_IsoMu24"
+            "HLT_IsoMu24",
+            "HLT_Mu50"
         ],
         "2023BPix":[
-            "HLT_IsoMu24"
+            "HLT_IsoMu24",
+            "HLT_Mu50"
         ],
         "2024":[
-            "HLT_IsoMu24"
+            "HLT_IsoMu24",
+            "HLT_Mu50"
         ]
     },
     "Electron":{
         "2022":[
-            "HLT_Ele30_WPTight_Gsf"
+            "HLT_Ele30_WPTight_Gsf",
+            "HLT_Ele115_CaloIdVT_GsfTrkIdT",
+            "HLT_Photon110EB_TightID_TightIso"
         ],
         "2022EE":[
-            "HLT_Ele30_WPTight_Gsf"
+            "HLT_Ele30_WPTight_Gsf",
+            "HLT_Ele115_CaloIdVT_GsfTrkIdT",
+            "HLT_Photon110EB_TightID_TightIso"
         ],
         "2023":[
-            "HLT_Ele30_WPTight_Gsf"
+            "HLT_Ele30_WPTight_Gsf",
+            "HLT_Ele115_CaloIdVT_GsfTrkIdT",
+            "HLT_Photon110EB_TightID_TightIso"
         ],
-        "2023Bpix":[
-            "HLT_Ele30_WPTight_Gsf"
+        "2023BPix":[
+            "HLT_Ele30_WPTight_Gsf",
+            "HLT_Ele115_CaloIdVT_GsfTrkIdT",
+            "HLT_Photon110EB_TightID_TightIso"
         ],
         "2024":[
-            "HLT_Ele30_WPTight_Gsf"
+            "HLT_Ele30_WPTight_Gsf",
+            "HLT_Ele115_CaloIdVT_GsfTrkIdT",
+            "HLT_Photon110EB_TightID_TightIso"
         ]
     }
 }

@@ -7,6 +7,15 @@
     "MC_DibosonJets": "#717581",
     "MC_SingleTopJets": "#3f90da",
     "SignalMC_XHY4b": "#832db6",
+    "MC_WJets": "#228B22",
+    "MC_DYJets": "#E83E8C",
+    "MC_TTHJets_Hto2B": "#FFD166",
+    "MC_TTHJets_Hto2C": "#FFD166",
+    "MC_TTHJets_Hto2G": "#FFD166",
+    "MC_TTTT": "#FFD166",
+    "MC_TTZJets_ZtoQQ": "#FFD166",
+    "MC_TTLL_MLL50": "#FFD166",
+    "MC_TTH_TTToAll_HToAATo4B_M30": "#FFD166",
     "data": "black"
 }
 

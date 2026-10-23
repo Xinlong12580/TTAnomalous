@@ -16,7 +16,6 @@ parser.add_argument('-r', type=str, dest='region',action='store', required=True)
 args = parser.parse_args()
 
 CompileCpp("cpp_modules/selection_functions.cc")
-
 #Specifying columns to save
 columns = ["n.*", "Mass_.*", "Pt_.*", "Eta_.*", "Phi_.*", "Idx_.*", ".*goodness" "Tagger_.*", "MassHiggs.*", "idx.*", "gen_.*", ".*_matched.*", "Delta_Eta", "Delta_Y", ".*Weight", ".*weight", "MY", "MX", "leadingFatJetPt","leadingFatJetPhi","leadingFatJetEta", "leadingFatJetMsoftdrop", "MassLeadingTwoFatJets", "MassHiggsCandidate", "PtHiggsCandidate", "EtaHiggsCandidate", "PhiHiggsCandidate", "MassYCandidate", "PtYCandidate", "EtaYCandidate", "PhiYCandidate", "MJJ", "MJY", "PNet_H", "PNet_Y", "weight.*",  "FatJet_pt_JER__up", "PileUp_Corr__nom", "PileUp_Corr__up", "PileUp_Corr__down", "Pileup_nTrueInt"]
 

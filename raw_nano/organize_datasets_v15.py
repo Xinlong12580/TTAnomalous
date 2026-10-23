@@ -1,7 +1,31 @@
 import json
 from pathlib import Path
 years = ["2022", "2022EE", "2023", "2023BPix", "2024"]
-BKG_process = {"MC_TTBarJets":["TTto4Q", "TTtoLNu2Q", "TTto2L2Nu"], "MC_QCDJets": ["QCD-4Jets_HT-100to200", "QCD-4Jets_HT-200to400", "QCD-4Jets_HT-400to600", "QCD-4Jets_HT-600to800", "QCD-4Jets_HT-800to1000", "QCD-4Jets_HT-1000to1200", "QCD-4Jets_HT-1200to1500", "QCD-4Jets_HT-1500to2000", "QCD-4Jets_HT-2000"], "MC_TTHJets":["TTH-Hto2B"] }
+BKG_process = {"MC_TTBarJets":["TTto4Q", "TTtoLNu2Q", "TTto2L2Nu"], "MC_QCDJets": ["QCD-4Jets_HT-100to200", "QCD-4Jets_HT-200to400", "QCD-4Jets_HT-400to600", "QCD-4Jets_HT-600to800", "QCD-4Jets_HT-800to1000", "QCD-4Jets_HT-1000to1200", "QCD-4Jets_HT-1200to1500", "QCD-4Jets_HT-1500to2000", "QCD-4Jets_HT-2000"], "MC_TTHJets_Hto2B":["Hto2B"] }
+BKG_process["MC_SingleTopJets"] = ["TBbarQtoLNu","TbarBQtoLNu","TWminustoLNu2Q","TbarWplustoLNu2Q", "TWminusto2L2Nu", "TbarWplusto2L2Nu"]
+BKG_process["MC_WJets"] = []
+BKG_process["MC_DYJets"] = []
+BKG_process["MC_TTHJets_Hto2C"] = ["Hto2C"]
+BKG_process["MC_TTHJets_Hto2G"] = ["Hto2G"]
+BKG_process["MC_TTZJets_ZtoQQ"] = ["ZtoQQ"]
+BKG_process["MC_TTLL_MLL50"] = ["MLL-50"]
+BKG_process["MC_TTH_TTToAll_HToAATo4B_M30"] = ["M-30"]
+BKG_process["MC_TTTT"] = ["TTTT"]
+with open("MC_WJets_base.txt", "r") as f:
+    for line in f.readlines():
+        line = line.strip()
+        print(line.find("Bin-"))
+        subprocess = line[line.find("Bin-") + 4: line.find("Tune")]
+        if subprocess not in BKG_process["MC_WJets"]:
+            BKG_process["MC_WJets"].append(subprocess)
+
+with open("MC_DYJets_base.txt", "r") as f:
+    for line in f.readlines():
+        line = line.strip()
+        subprocess = line[line.find("Bin-") + 4: line.find("Tune")]
+        if subprocess not in BKG_process["MC_DYJets"]:
+            BKG_process["MC_DYJets"].append(subprocess)
+
 BKG_json = {}
 for year in years:
     BKG_json[year] = {}
@@ -10,19 +34,20 @@ for year in years:
         for subprocess in BKG_process[process]:
             BKG_json[year][process][subprocess] = ""
 for process in BKG_process:
-    with open(f"{process}_base.txt", "r") as f:
-        lines = f.readlines()
-    for line in lines:
-        line = line.strip()
-        print(line)
-        if "Par" not in line and "ext" not in line and "Fil" not in line:
-            for year in years:
-                if year[2:] + "Nano" in line or year[2:] + "Mini" in line:
-                    for subprocess in BKG_process[process]:
-                        if subprocess in line:
-                            BKG_json[year][process][subprocess] = line
-                            break
-                    break
+    if Path(f"{process}_base.txt").exists():
+        with open(f"{process}_base.txt", "r") as f:
+            lines = f.readlines()
+        for line in lines:
+            line = line.strip()
+            print(line)
+            if "Par" not in line and "ext" not in line and "Fil" not in line:
+                for year in years:
+                    if year[2:] + "Nano" in line or year[2:] + "Mini" in line:
+                        for subprocess in BKG_process[process]:
+                            if subprocess in line:
+                                BKG_json[year][process][subprocess] = line
+                                break
+                        break
     f2024_path = Path(f"{process}_2024.txt")
     if not f2024_path.exists():
         continue
@@ -37,10 +62,10 @@ for process in BKG_process:
                 _subprocess = subprocess
                 if process == "MC_QCDJets":
                     _subprocess = subprocess[10:]
-                if _subprocess in line:
+                if _subprocess.replace("-", "_") in line or _subprocess in line:
                     BKG_json["2024"][process][subprocess] = line
                     break
-print(BKG_json)
+#print(BKG_json)
 
 with open("Datasets_background_v15.json", "w") as f:
     json.dump(BKG_json, f, indent = 4)

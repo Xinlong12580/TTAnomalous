@@ -3,7 +3,7 @@ import array
 from hist import Hist
 import ROOT
 import pickle
-def rebin_TH1(h, bins, name = "default"):
+def rebin_TH1(h, bins, name = "default", forceInputPositive = False, forceOutputPositive = False, outputFloor = 0):
     nbins_ori = h.GetNbinsX()
     bins_ori = [h.GetXaxis().GetBinLowEdge(i) for i in range(1, nbins_ori +1) ]
     bins_ori.append(h.GetXaxis().GetBinUpEdge(nbins_ori))
@@ -29,9 +29,15 @@ def rebin_TH1(h, bins, name = "default"):
         low_index = bins_map[i]
         up_index = bins_map[i + 1]
         for j in range(low_index, up_index):
-            value += h.GetBinContent(j + 1)
+            if forceInputPositive:
+                value += max(0, h.GetBinContent(j + 1))
+            else:
+                value += h.GetBinContent(j + 1)
             sigma = np.sqrt(sigma**2 + h.GetBinError(j + 1)**2)
-        h_merged.SetBinContent(i + 1, value)
+        if forceOutputPositive:
+            h_merged.SetBinContent(i + 1, max(value, outputFloor))
+        else:
+            h_merged.SetBinContent(i + 1, value)
         h_merged.SetBinError(i + 1, sigma)
     return h_merged
          
@@ -39,7 +45,7 @@ def rebin_TH1(h, bins, name = "default"):
     
     
     
-def rebin_TH2(h, xbins, ybins, name = "default"):
+def rebin_TH2(h, xbins, ybins, name = "default", forceInputPositive = False, forceOutputPositive = False, outputFloor = 0):
     nbins_ori_x = h.GetNbinsX()
     nbins_ori_y = h.GetNbinsY()
     
@@ -85,9 +91,15 @@ def rebin_TH2(h, xbins, ybins, name = "default"):
             up_index_y = bins_map_y[j + 1]
             for m in range(low_index_x, up_index_x):
                 for n in range(low_index_y, up_index_y):
-                    value += h.GetBinContent(m + 1, n + 1)
+                    if forceInputPositive:
+                        value += max(0, h.GetBinContent(m + 1, n + 1))
+                    else:
+                        value += h.GetBinContent(m + 1, n + 1)
                     sigma = np.sqrt(sigma**2 + h.GetBinError(m + 1, n + 1)**2)
-            h_merged.SetBinContent(i + 1, j + 1, value)
+            if forceOutputPositive:
+                h_merged.SetBinContent(i + 1, j + 1, max(outputFloor, value))
+            else:
+                h_merged.SetBinContent(i + 1, j + 1, value)
             h_merged.SetBinError(i + 1, j + 1, sigma)
     return h_merged
          
@@ -123,6 +135,8 @@ def load_weight(data_files, years, processes, signal_json, Xsec_json ):
             
 
     for data_file in data_files:
+        if "2022EE" in data_file and "TTBar" in data_file:
+            print("CHECKING " + data_file)
         for year in BKG_fileWeight:
             if (year + "__" ) in data_file:
                 for process in BKG_fileWeight[year]:
@@ -136,7 +150,7 @@ def load_weight(data_files, years, processes, signal_json, Xsec_json ):
         for process in BKG_fileWeight[year]:
             for subprocess in BKG_fileWeight[year][process]:
                 BKG_totalWeight[year][process][subprocess] = sum(BKG_fileWeight[year][process][subprocess])
-
+    print(BKG_totalWeight)
     return BKG_fileWeight, BKG_totalWeight
 
 
@@ -352,14 +366,3 @@ def load_TH2(data_files, template_files, years, bins, processes, MC_weight, Xsec
     return h_data, h_BKGs
 
 
-def ApplyNoiseFilter(analyzer, year, isData):
-    if year == "2022" or year == "2022EE" or year == "2023" or year == "2023BPix" or year == "2024":
-        filterString = "Flag_goodVertices == 1 && Flag_globalSuperTightHalo2016Filter == 1 && Flag_EcalDeadCellTriggerPrimitiveFilter== 1 && Flag_BadPFMuonFilter == 1 && Flag_BadPFMuonDzFilter == 1 && Flag_hfNoisyHitsFilter == 1 && Flag_eeBadScFilter == 1"
-        analyzer.Cut(f"NoiseFilters", filterString)
-        if (year == "2022" or year == "2022EE" or year == "2023" or year == "2023BPix") and isData:
-            analyzer.Cut("ecalBadCalibFilter", "ecalBadCalibFilterRecipe(run,  PuppiMET_pt, PuppiMET_phi,  nJet, Jet_pt, Jet_eta, Jet_phi, Jet_neEmEF, Jet_chEmEF)")
-        elif year == 2024:
-            analyzer.Cut("ecalBadCalibFilter", "Flag_ecalBadCalibFilter == 1")
-    else:
-        raise ValueError("Only years of Run3 is supported by the moment.")
-    

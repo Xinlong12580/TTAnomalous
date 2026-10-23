@@ -1,0 +1,66 @@
+{
+    "MC_TTBarJets": {
+        "TTto4Q": 419.7,
+        "TTtoLNu2Q": 405.7,
+        "TTto2L2Nu": 98.0
+    },
+    "MC_QCDJets": {
+        "QCD-4Jets_HT-100to200": 25400000,
+        "QCD-4Jets_HT-200to400": 1961000,
+        "QCD-4Jets_HT-400to600": 95620,
+        "QCD-4Jets_HT-600to800": 13540,
+        "QCD-4Jets_HT-800to1000": 3033,
+        "QCD-4Jets_HT-1000to1200": 883.7,
+        "QCD-4Jets_HT-1200to1500": 383.5,
+        "QCD-4Jets_HT-1500to2000": 125.2,
+        "QCD-4Jets_HT-2000": 26.49
+    },
+    "MC_TTHJets": {
+        "TTH-Hto2B": 0.5742
+    },
+    "MC_SingleTopJets": {
+        "TBbarQtoLNu": 38.6,
+        "TbarBQtoLNu": 38.6,
+        "TWminustoLNu2Q": 35.99,
+        "TbarWplustoLNu2Q": 35.99,
+        "TWminusto2L2Nu": 35.99,
+        "TbarWplusto2L2Nu": 35.99
+    },
+    "MC_WJets": {
+        "HT-100to400-MLNu-0to120_":1636,
+        "HT-100to400-MLNu-120_": 10.18,
+        "HT-1500to2500-MLNu-0to120_": 0.4503,
+        "HT-1500to2500-MLNu-120_": 0.005052,
+        "HT-2500-MLNu-0to120_": 0.03085,
+        "HT-2500-MLNu-120_": 0.0003781,
+        "HT-400to800-MLNu-0to120_": 59.86,
+        "HT-400to800-MLNu-120_": 0.526,
+        "HT-40to100-MLNu-0to120_": 4260,
+        "HT-40to100-MLNu-120_": 20.65,
+        "HT-800to1500-MLNu-0to120_": 6.226,
+        "HT-800to1500-MLNu-120_": 0.06245
+    },
+    "MC_DYJets": {
+        "HT-100to400-MLL-120_": 3.351,
+        "HT-100to400-MLL-4to50_": 316.8,
+        "HT-100to400-MLL-50to120_": 179.9,
+        "HT-1500to2500-MLL-120_": 0.001679,
+        "HT-1500to2500-MLL-4to50_": 0.0207,
+        "HT-1500to2500-MLL-50to120_": 0.05051,
+        "HT-2500-MLL-120_": 0.000124,
+        "HT-2500-MLL-4to50_": 0.001067,
+        "HT-2500-MLL-50to120_": 0.003455,
+        "HT-400to800-MLL-120_": 0.1753,
+        "HT-400to800-MLL-4to50_": 5.652,
+        "HT-400to800-MLL-50to120_": 6.721,
+        "HT-40to70-MLL-120_": 4.576,
+        "HT-40to70-MLL-4to50_": 912,
+        "HT-40to70-MLL-50to120_": 316,
+        "HT-70to100-MLL-120_": 2.203,
+        "HT-70to100-MLL-4to50_": 347.6,
+        "HT-70to100-MLL-50to120_": 140.4,
+        "HT-800to1500-MLL-120_": 0.02089,
+        "HT-800to1500-MLL-4to50_": 0.4209,
+        "HT-800to1500-MLL-50to120_": 0.6987
+    }
+}

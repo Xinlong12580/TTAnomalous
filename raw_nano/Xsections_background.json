@@ -1,49 +1,84 @@
 {
-        "__COMMENT__": "in pb",
-        "MC_QCDJets": {
-            "QCD-4Jets_HT-100to200": 25400000,
-            "QCD-4Jets_HT-200to400": 1961000,
-            "QCD-4Jets_HT-400to600": 95620,
-            "QCD-4Jets_HT-600to800": 13540,
-            "QCD-4Jets_HT-800to1000": 3033,
-            "QCD-4Jets_HT-1000to1200": 883.7,
-            "QCD-4Jets_HT-1200to1500": 383.5,
-            "QCD-4Jets_HT-1500to2000": 125.2,
-            "QCD-4Jets_HT-2000": 26.49
-        },
-        "MC_WZJets": {
-            "Wto2Q-3Jets_HT-200to400": 2723.0,
-            "Wto2Q-3Jets_HT-400to600": 299.8,
-            "Wto2Q-3Jets_HT-600to800": 63.9,
-            "Wto2Q-3Jets_HT-800": 31.9,
-            "Zto2Q-4Jets_HT-200to400": 1082.0,
-            "Zto2Q-4Jets_HT-400to600": 124.1,
-            "Zto2Q-4Jets_HT-600to800": 27.28,
-            "Zto2Q-4Jets_HT-800": 14.57
-        },
-        "MC_TTBarJets": {
-            "TTto4Q":  419.7,
-            "TTtoLNu2Q": 405.7,
-            "TTto2L2Nu": 98.0
-        },
-        "MC_HiggsJets": {
-            "GluGluHto2B_M-125": 30.2,
-            "VBFHto2B_M-125": 4.18,
-            "WminusH_Hto2B_Wto2Q_M-125": 0.3916,
-            "WplusH_Hto2B_Wto2Q_M-125": 0.623,
-            "ZH_Hto2B_Zto2Q_M-125": 0.5958,
-            "ggZH_Hto2B_Zto2Q_M-125": 0.04776,
-            "TTH_Hto2B_M-125": 0.5742
-        },
-        "MC_TTHJets": {
-            "TTH-Hto2B": 0.5742
-        },
-        "MC_DibosonJets": {
-            "WWto4Q": 50.79,
-            "WZ": 29.1,
-            "ZZ": 12.75
-        },
-        "MC_SingleTopJets": {
-            "TbarBQ_t-channel_4FS": 75.47
-        }
+    "MC_TTBarJets": {
+        "TTto4Q": 419.7,
+        "TTtoLNu2Q": 405.7,
+        "TTto2L2Nu": 98.0
+    },
+    "MC_QCDJets": {
+        "QCD-4Jets_HT-100to200": 25400000,
+        "QCD-4Jets_HT-200to400": 1961000,
+        "QCD-4Jets_HT-400to600": 95620,
+        "QCD-4Jets_HT-600to800": 13540,
+        "QCD-4Jets_HT-800to1000": 3033,
+        "QCD-4Jets_HT-1000to1200": 883.7,
+        "QCD-4Jets_HT-1200to1500": 383.5,
+        "QCD-4Jets_HT-1500to2000": 125.2,
+        "QCD-4Jets_HT-2000": 26.49
+    },
+    "MC_SingleTopJets": {
+        "TBbarQtoLNu": 38.6,
+        "TbarBQtoLNu": 23.34,
+        "TWminustoLNu2Q": 19.291,
+        "TbarWplustoLNu2Q": 19.330,
+        "TWminusto2L2Nu": 4.663,
+        "TbarWplusto2L2Nu": 4.673
+    },
+    "MC_WJets": {
+        "HT-100to400-MLNu-0to120_":1636,
+        "HT-100to400-MLNu-120_": 10.18,
+        "HT-1500to2500-MLNu-0to120_": 0.4503,
+        "HT-1500to2500-MLNu-120_": 0.005052,
+        "HT-2500-MLNu-0to120_": 0.03085,
+        "HT-2500-MLNu-120_": 0.0003781,
+        "HT-400to800-MLNu-0to120_": 59.86,
+        "HT-400to800-MLNu-120_": 0.526,
+        "HT-40to100-MLNu-0to120_": 4260,
+        "HT-40to100-MLNu-120_": 20.65,
+        "HT-800to1500-MLNu-0to120_": 6.226,
+        "HT-800to1500-MLNu-120_": 0.06245
+    },
+    "MC_DYJets": {
+        "HT-100to400-MLL-120_": 3.351,
+        "HT-100to400-MLL-4to50_": 316.8,
+        "HT-100to400-MLL-50to120_": 179.9,
+        "HT-1500to2500-MLL-120_": 0.001679,
+        "HT-1500to2500-MLL-4to50_": 0.0207,
+        "HT-1500to2500-MLL-50to120_": 0.05051,
+        "HT-2500-MLL-120_": 0.000124,
+        "HT-2500-MLL-4to50_": 0.001067,
+        "HT-2500-MLL-50to120_": 0.003455,
+        "HT-400to800-MLL-120_": 0.1753,
+        "HT-400to800-MLL-4to50_": 5.652,
+        "HT-400to800-MLL-50to120_": 6.721,
+        "HT-40to70-MLL-120_": 4.576,
+        "HT-40to70-MLL-4to50_": 912,
+        "HT-40to70-MLL-50to120_": 316,
+        "HT-70to100-MLL-120_": 2.203,
+        "HT-70to100-MLL-4to50_": 347.6,
+        "HT-70to100-MLL-50to120_": 140.4,
+        "HT-800to1500-MLL-120_": 0.02089,
+        "HT-800to1500-MLL-4to50_": 0.4209,
+        "HT-800to1500-MLL-50to120_": 0.6987
+    },
+    "MC_TTHJets_Hto2B": {
+        "Hto2B": 0.344839
+    },
+    "MC_TTHJets_Hto2C": {
+        "Hto2C": 0.0171176
+    },
+    "MC_TTHJets_Hto2G": {
+        "Hto2G": 0.00134407
+    },
+    "MC_TTZJets_ZtoQQ": {
+        "ZtoQQ": 0.677563
+    },
+    "MC_TTLL_MLL50": {
+        "MLL-50": 0.08630
+    },
+    "MC_TTH_TTToAll_HToAATo4B_M30": {
+        "M-30": 1
+    },
+    "MC_TTTT": {
+        "TTTT": 0.01200
+    }
 }

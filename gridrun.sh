@@ -1,6 +1,6 @@
 #!/bin/bash
 root_dir=$(pwd)
-OUTTXT=run_quick_selection_control.py_"$2"_"$4"_"$6"_"$8"_"${10}"_"${12}"_output.log
+OUTTXT=run_quick_selection_muon.py_"$2"_"$4"_"$6"_"$8"_"${10}"_"${12}"_output.log
 OUTTXT="${OUTTXT//\//_}"
 echo "OUTTXT" $OUTTXT
 echo "Run script starting" | tee $root_dir/$OUTTXT
@@ -66,8 +66,8 @@ pwd | tee -a $root_dir/$OUTTXT
 export X509_CERT_DIR=/cvmfs/grid.cern.ch/etc/grid-security/certificates/
 
 # MAIN FUNCTION
-echo python run_quick_selection_control.py $* | tee -a $root_dir/$OUTTXT
-python run_quick_selection_control.py $* 2>&1 | tee -a $root_dir/$OUTTXT
+echo python run_quick_selection_muon.py $* | tee -a $root_dir/$OUTTXT
+python run_quick_selection_muon.py $* 2>&1 | tee -a $root_dir/$OUTTXT
 status=${PIPESTATUS[0]}
 if [ $status -eq 0 ]; then
     # move all snapshots to the EOS (there will only be one)

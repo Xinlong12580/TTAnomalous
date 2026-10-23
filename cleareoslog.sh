@@ -5,4 +5,8 @@ fi
 rm *Validation*output.log
 rm *Signal*output.log
 rm *Control*output.log
+rm *2022*output.log
+rm *2023*output.log
+rm *2024*MC*output.log
+rm *2024*Data*output.log
 rm *output.log

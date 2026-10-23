@@ -5,7 +5,7 @@ output="$operation"_args.txt
 if [[ $operation == "skim" || $operation == *"direct_selection"* ]] ; then
     files=raw_nano/files/*.txt
     #files=raw_nano/files_original_dataset/*.txt
-    n_files_base=1
+    n_files_base=3
 else
     files=outputList/"${input^^}"*.txt
     n_files_base=10000
@@ -29,13 +29,13 @@ for file in $files; do
     if [[  ( $operation == *"skim"* ) && ( $file != *"24"* ) && ( $file == *"QCD"* || $file == *"Signal"* ) ]] ; then
         n_files=10
     fi 
-        
+    if  [[ ( $operation == *"skim"*  ) && ( $file == *"TTBar"* || $file == *"Data"* || $file == *QCDJets__QCD-4Jets_HT-1000to1200*  ) ]] ; then
+        n_files=1
+    fi        
+    if  [[ ( $operation == *"skim"*  ) && ( $file == *QCDJets*  ) ]] ; then
+        n_files=2
+    fi        
     pass=0
-    #if [[ "$file" == *"SignalMC"* ]]; then
-    #    pass=1
-    #elif [[ "$file" == *"MX-3000_MY-300"* ]]; then
-    #    pass=1
-    #fi
     if [[  $operation == *"Nminus1"* && "$file" == *"Data"* ]]; then
         pass=0
     fi 
@@ -67,7 +67,10 @@ for file in $files; do
     #if [[  ( $file == *"TTto4Q"* || $file == *"Data"*   ) ]]; then
     #if [[  (  $file == *"Data"* || $file == *"Signal"* || $file == *"TTBar"*  ) ]]; then
     #if [[  (  $file != *"QCD"* && $file == *"2024"*  ) ]]; then
-    if [[  (  ( $file == *"QCD"* || $file == *"JetMET"* ) && $file == *"2024"*  ) ]]; then
+    #if [[  (  ( $file == *"QCD"* || $file == *"JetMET"* ) && $file == *"2024"*  ) ]]; then
+    #if [[  ( ( $file == *"QCD"* || $file == *"TTH"* || $file == *"TTBar"* || $file == *"Muon"* || $file == *"DYJets"* || $file == *"WJets"* || $file == *"SingleTopJets"* ) && $file == *"2024"*  ) ]]; then
+    if [[  ( ! ( $file == *"QCD"*  || $file == *"TTBar"* || $file == *"Data"* || $file == *"DYJets"* || $file == *"WJets"* || $file == *"SingleTopJets"* ) && $file == *"2024"*  ) ]]; then
+    #if [[  ( ( $file == *"QCD"*  ) && file == *"2024"*  ) ]]; then
     #if [[  (  $file == *"QCD"* && $file != *"HT-100to"*   ) ]]; then
         pass=1
     fi

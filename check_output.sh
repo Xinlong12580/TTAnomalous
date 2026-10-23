@@ -2,6 +2,7 @@ output=$1
 process=""
 #process=NanoAODv15
 years=(2022__ 2022EE__ 2023__ 2023BPix__ 2024__ )
+years=(2024__ )
 if [[ $output == "skim" ]]; then
     input_file=skim_args.txt
     amend_file=amend_skim_args.txt
@@ -11,7 +12,7 @@ if [[ $output == "skim" ]]; then
     declare -A classified_files
     for file in ${output_files[@]}; do
         for year in ${years[@]}; do
-            if [[ $file == *"output.log"* ]]; then
+            if [[ $file == *"output.log"* || $file == *"Template"* ]]; then
                 continue
             fi
             if [[ $file == *"$year"* ]]; then
@@ -20,11 +21,12 @@ if [[ $output == "skim" ]]; then
             fi
         done
     done
+    #echo TEST
     while IFS= read -r line; do
         if [[ $line != *$process* ]]; then
             continue
         fi
-        #echo "$line"
+        #echo checking "$line"
         input_arg=$(echo "$line" | awk '{print $2}')
         file_base=$(basename $input_arg)
         file_base="${file_base%.*}"
@@ -35,8 +37,7 @@ if [[ $output == "skim" ]]; then
         i_base="i-"$input_i
         found=0
         for file in ${classified_files["$input_y"]}; do
-            #echo $file
-            if [[ $file == *"$file_base"* && $file == *"$n_base"* && $file == *"$i_base"* ]]; then
+            if [[ $file == *"$file_base"* && $file == *"_n-${input_n}_i-${input_i}.root"* ]]; then
                 found=1
                 classified_files["$input_y"]="${classified_files[$input_y]//$file/}"
                 break
@@ -205,7 +206,7 @@ elif [[ $output == "Nminus1_1p1" ]]; then
     done < $input_file
 
 
-elif [[ $output == "division_1p1" ]]; then
+elif [[ $output == "division_combined_BDT" ]]; then
     amend_file=amend_division_args.txt
     > $amend_file
     output_dir=/store/user/xinlong/XHY4bRun3_skim

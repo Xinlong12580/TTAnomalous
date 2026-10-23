@@ -34,6 +34,7 @@ classify_files(){
     done
 }
 #classify_files "/store/user/$USER/XHY4bRun3_skim" "SKIM" 
+classify_files "/store/user/$USER/TTAnomalous/quick_selection" "QUICK_SELECTION" 
 
 
 #collecting all output files
