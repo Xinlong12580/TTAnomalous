@@ -74,6 +74,7 @@ for file in $files; do
     #if [[  (  $file == *"QCD"* && $file != *"HT-100to"*   ) ]]; then
         pass=1
     fi
+    pass=1
     debug=1
     if [[ $operation == *"selection"* && $pass == 1 ]]; then
         Regs=("-r Signal" "-r Control" "-r Validation")

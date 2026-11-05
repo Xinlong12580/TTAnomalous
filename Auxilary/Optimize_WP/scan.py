@@ -14,9 +14,11 @@ with open(DIR_TOP + "/raw_nano/Xsections_background.json") as f:
 
 with open("hists_selection_TH_muon.pkl", "rb") as f:
     hists = pkl.load(f)["BKGs"]
-save_dir = "plots/"
+save_dir = "AFJ_plots/"
 samples = np.arange(0, 1, 100)
-processes = {"MC_TTBarJets":"*", "MC_TTHJets": "*"}
+processes = { "MC_TTBarJets": ["*"], "MC_QCDJets": ["*"], "MC_WJets": ["*"], "MC_SingleTopJets": ["*"], "MC_DYJets": ["*"], "MC_TTHJets_Hto2B": ["*"], "MC_TTHJets_Hto2C": ["*"], "MC_TTHJets_Hto2G": ["*"], "MC_TTZJets_ZtoQQ":["*"], "MC_TTTT": ["*"], "MC_TTLL_MLL50":["*"], "MC_TTH_TTToAll_HToAATo4B_M30": ["*"]  }
+
+
 years = ["2024"]
 bins = {"Tagger_AFJ": array.array("d", np.linspace(0, 1, 101) )}
 for process in processes:
@@ -41,8 +43,8 @@ for year in years:
     
        
 
-BKGs = {"MC_TTBarJets":"*"} 
-Signals = {"MC_TTHJets":"*"} 
+BKGs = { "MC_TTBarJets": ["*"], "MC_QCDJets": ["*"], "MC_WJets": ["*"], "MC_SingleTopJets": ["*"], "MC_DYJets": ["*"]}
+Signals = {"MC_TTHJets_Hto2B": ["*"], "MC_TTHJets_Hto2C": ["*"], "MC_TTHJets_Hto2G": ["*"], "MC_TTZJets_ZtoQQ":["*"], "MC_TTTT": ["*"], "MC_TTLL_MLL50":["*"], "MC_TTH_TTToAll_HToAATo4B_M30": ["*"]  }
     
 for process in BKGs:
     if "*" in BKGs[process]: 

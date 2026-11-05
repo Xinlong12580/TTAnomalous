@@ -389,8 +389,8 @@ class TTAnomalous_Analyzer:
 
         ################Identification##################################################################
        
-        #self.analyzer.Define("Idx_AFJ", "Find_Anomalous_FatJet(nFatJet, FatJet_goodness, Idx_JT, FatJet_eta, FatJet_phi, Eta_JB, Phi_JB, 1.2 )")
-        self.analyzer.Define("Idx_AFJ", "Find_Anomalous_FatJet(nFatJet, FatJet_goodness, Idx_JT, FatJet_eta, FatJet_phi, Eta_JB, Phi_JB, -1. )")
+        self.analyzer.Define("Idx_AFJ", "Find_Anomalous_FatJet(nFatJet, FatJet_goodness, Idx_JT, FatJet_eta, FatJet_phi, Eta_JB, Phi_JB, 1.2, Eta_Lep, Phi_Lep, 0.8 )")
+        #self.analyzer.Define("Idx_AFJ", "Find_Anomalous_FatJet(nFatJet, FatJet_goodness, Idx_JT, FatJet_eta, FatJet_phi, Eta_JB, Phi_JB, -1. )")
         self.analyzer.Define("valid_AFJ", "Idx_AFJ >= 0")
         self.analyzer.Define("Mass_AFJ", "Idx_AFJ < 0? -1.f : FatJet_msoftdrop.at(Idx_AFJ)" )
         self.analyzer.Define("Eta_AFJ", "Idx_AFJ < 0? -100.f : FatJet_eta.at(Idx_AFJ)" )
@@ -407,6 +407,16 @@ class TTAnomalous_Analyzer:
         self.analyzer.Define("Snapshot_Jet_eta", "Jet_eta" )
         self.analyzer.Define("Snapshot_Jet_phi", "Jet_phi" )
         self.analyzer.Define("Snapshot_Jet_mass", "Jet_mass" )
+        self.analyzer.Define("Snapshot_Muon_pt", "Muon_pt" )
+        self.analyzer.Define("Snapshot_Muon_eta", "Muon_eta" )
+        self.analyzer.Define("Snapshot_Muon_phi", "Muon_phi" )
+        self.analyzer.Define("Snapshot_Muon_mass", "Muon_mass" )
+        self.analyzer.Define("Snapshot_Muon_charge", "Muon_charge" )
+        self.analyzer.Define("Snapshot_Electron_pt", "Electron_pt" )
+        self.analyzer.Define("Snapshot_Electron_eta", "Electron_eta" )
+        self.analyzer.Define("Snapshot_Electron_phi", "Electron_phi" )
+        self.analyzer.Define("Snapshot_Electron_mass", "Electron_mass" )
+        self.analyzer.Define("Snapshot_Electron_charge", "Electron_charge" )
         self.analyzer.Define(f"Snapshot_{AK4_btagger}", AK4_btagger )
         
         userful_scores = ["FatJet_XbbVSQCD", "FatJet_globalParT3_QCD", "FatJet_InverseQCD", "FatJet_OneminusQCD" ] 
@@ -542,8 +552,9 @@ class TTAnomalous_Analyzer:
 
         ################Identification##################################################################
        
+        self.analyzer.Define("Idx_AFJ", "Find_Anomalous_FatJet(nFatJet, FatJet_goodness, Idx_JT, FatJet_eta, FatJet_phi, Eta_JB, Phi_JB, 1.2, Eta_Lep, Phi_Lep, 0.8 )")
         #self.analyzer.Define("Idx_AFJ", "Find_Anomalous_FatJet(nFatJet, FatJet_goodness, Idx_JT, FatJet_eta, FatJet_phi, Eta_JB, Phi_JB, 1.2 )")
-        self.analyzer.Define("Idx_AFJ", "Find_Anomalous_FatJet(nFatJet, FatJet_goodness, Idx_JT, FatJet_eta, FatJet_phi, Eta_JB, Phi_JB, -1. )")
+        #self.analyzer.Define("Idx_AFJ", "Find_Anomalous_FatJet(nFatJet, FatJet_goodness, Idx_JT, FatJet_eta, FatJet_phi, Eta_JB, Phi_JB, -1. )")
         self.analyzer.Define("valid_AFJ", "Idx_AFJ >= 0")
         self.analyzer.Define("Mass_AFJ", "Idx_AFJ < 0? -1.f : FatJet_msoftdrop.at(Idx_AFJ)" )
         self.analyzer.Define("Eta_AFJ", "Idx_AFJ < 0? -100.f : FatJet_eta.at(Idx_AFJ)" )
@@ -560,6 +571,16 @@ class TTAnomalous_Analyzer:
         self.analyzer.Define("Snapshot_Jet_eta", "Jet_eta" )
         self.analyzer.Define("Snapshot_Jet_phi", "Jet_phi" )
         self.analyzer.Define("Snapshot_Jet_mass", "Jet_mass" )
+        self.analyzer.Define("Snapshot_Muon_pt", "Muon_pt" )
+        self.analyzer.Define("Snapshot_Muon_eta", "Muon_eta" )
+        self.analyzer.Define("Snapshot_Muon_phi", "Muon_phi" )
+        self.analyzer.Define("Snapshot_Muon_mass", "Muon_mass" )
+        self.analyzer.Define("Snapshot_Muon_charge", "Muon_charge" )
+        self.analyzer.Define("Snapshot_Electron_pt", "Electron_pt" )
+        self.analyzer.Define("Snapshot_Electron_eta", "Electron_eta" )
+        self.analyzer.Define("Snapshot_Electron_phi", "Electron_phi" )
+        self.analyzer.Define("Snapshot_Electron_mass", "Electron_mass" )
+        self.analyzer.Define("Snapshot_ELectron_charge", "Electron_charge" )
         self.analyzer.Define(f"Snapshot_{AK4_btagger}", AK4_btagger )
 
         userful_scores = ["FatJet_XbbVSQCD", "FatJet_globalParT3_QCD", "FatJet_InverseQCD", "FatJet_OneminusQCD"] 

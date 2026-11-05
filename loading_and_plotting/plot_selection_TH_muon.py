@@ -172,21 +172,24 @@ for year in years:
         plt.close()
     
         #----plotting signal------
-        for Signal_process in Signal_processes:
+        #for Signal_process in Signal_processes:
+        for Signal_process in processes:
             fig_s, (ax1_s, ax2_s) = plt.subplots(2, 1, figsize=(15, 12), gridspec_kw={"height_ratios": [3, 1]}, sharex=True)
             mplhep.histplot(
                 [h_Merged[year][Signal_process][column] ],
                 label = [Signal_process],
-                color = ["purple"],
+                color = [color_json[Signal_process]],
                 stack = True,
                 histtype = "fill",
                 ax = ax1_s,
             )
+            mc_errors = np.array([h_Merged[year][Signal_process][column].GetBinError(i) for i in range(1, h_Merged[year][Signal_process][column].GetNbinsX() + 1)])
             mplhep.histplot(
                 [h_Merged[year][Signal_process][column] ],
                 stack = True,  # Note: keep stack=True so contours align with total stacks
                 histtype = "step",
                 color = "black",
+                yerr = mc_errors,
                 ax = ax1_s,
                 linewidth = 1.2,
             )
